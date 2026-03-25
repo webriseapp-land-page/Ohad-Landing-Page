@@ -4,11 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="אוהד ורון – ביטוח ופיננסים. האיזון הנכון בין עלות לתועלת." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="אוהד ורון | ביטוח ופיננסים" />
+  <meta property="og:description" content="סוכן ביטוח מוסמך. האיזון הנכון בין עלות לתועלת." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0d2137" />
   <title>אוהד ורון | ביטוח ופיננסים</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rubik:wght@700;800;900&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -20,25 +25,16 @@
   <header class="header" id="site-header" role="banner">
     <div class="header-wrap">
 
-      <button class="header-logo" id="logo-btn" aria-label="הצג לוגו אוהד ורון" type="button">
-        <img src="images/logo.png" alt="לוגו אוהד ורון ביטוח ופיננסים" class="logo-img" />
-      </button>
-
-      <!-- Logo Lightbox -->
-      <div class="logo-lightbox" id="logo-lightbox" role="dialog" aria-modal="true" aria-label="לוגו מוגדל" hidden>
-        <div class="logo-lightbox-bg" id="logo-lightbox-bg"></div>
-        <div class="logo-lightbox-content">
-          <button class="logo-lightbox-close" id="logo-lightbox-close" aria-label="סגור">&#x2715;</button>
-          <img src="images/logo.png" alt="לוגו אוהד ורון ביטוח ופיננסים" class="logo-lightbox-img" />
-        </div>
+      <div class="header-logo">
+        <img src="images/logo_transparent.png" alt="לוגו אוהד ורון ביטוח ופיננסים" class="logo-img" />
       </div>
 
-      <button class="burger" id="burger-btn" aria-label="פתח תפריט" aria-expanded="false" aria-controls="main-nav">
-        <span></span><span></span><span></span>
+      <button class="burger" id="burger-btn" aria-label="פתח תפריט ניווט" aria-expanded="false" aria-controls="main-nav">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
 
       <nav id="main-nav" class="nav" role="navigation" aria-label="ניווט ראשי">
-        <ul>
+        <ul role="list">
           <li><a href="#about">אודותינו</a></li>
           <li><a href="#milestones">אבני הדרך</a></li>
           <li><a href="#services">שירותים</a></li>
@@ -47,7 +43,7 @@
         </ul>
         <a href="https://wa.me/9720549967122?text=היי%2C%20אני%20פונה%20אלייך%20מהאתר"
            class="nav-cta-btn" target="_blank" rel="noopener noreferrer"
-           aria-label="יצירת קשר בוואטסאפ">
+           aria-label="יצירת קשר בוואטסאפ (נפתח בחלון חדש)">
           ליצירת קשר &rsaquo;&rsaquo;
         </a>
       </nav>
@@ -55,22 +51,25 @@
     </div>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" tabindex="-1">
 
     <!-- ═══════════════════ HERO ═══════════════════ -->
     <section id="hero" class="hero" aria-labelledby="hero-h1">
 
-      <!-- רקע: גרדיאנט כחול-כהה, ללא תמונת רקע -->
+      <canvas class="hero-particles" id="heroParticles" aria-hidden="true"></canvas>
       <div class="hero-deco" aria-hidden="true">
         <div class="hero-deco-circle c1"></div>
         <div class="hero-deco-circle c2"></div>
         <div class="hero-deco-circle c3"></div>
+        <div class="hero-float-lines" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
       </div>
 
-      <!-- תוכן: טקסט + תמונת אוהד -->
       <div class="hero-inner container">
 
-        <div class="hero-text">          <h1 id="hero-h1" class="hero-title">
+        <div class="hero-text">
+          <h1 id="hero-h1" class="hero-title">
             אוהד ורון<br/>
             <em>ביטוח ופיננסים</em>
           </h1>
@@ -79,7 +78,7 @@
 
           <a href="https://wa.me/9720549967122?text=היי%2C%20אני%20פונה%20אלייך%20מהאתר"
              class="hero-cta" target="_blank" rel="noopener noreferrer"
-             aria-label="צרו קשר עם אוהד ורון בוואטסאפ">
+             aria-label="צרו קשר עם אוהד ורון בוואטסאפ (נפתח בחלון חדש)">
             ליצירת קשר &rsaquo;&rsaquo;
           </a>
         </div>
@@ -94,43 +93,45 @@
 
       </div>
 
-      <!-- טיקר שירותים – תחתית ה-Hero -->
-      <div class="ticker-bar" aria-label="שירותינו" role="marquee">
+      <!-- טיקר שירותים -->
+      <div class="ticker-bar" aria-label="רשימת שירותינו">
         <div class="ticker-track" aria-hidden="true">
           <span>ביטוח נסיעות לחו"ל</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>ביטוח דירה ותכולה</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>ביטוח משכנתא</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>ביטוח חיים ובריאות</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>אובדן כושר עבודה</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>ביטוח כלי רכב</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>תכנון פנסיוני פיננסי</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>תאונות אישיות</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <!-- כפול לאנימציה אינסופית -->
           <span>ביטוח נסיעות לחו"ל</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>ביטוח דירה ותכולה</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>ביטוח משכנתא</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>ביטוח חיים ובריאות</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>אובדן כושר עבודה</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>ביטוח כלי רכב</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>תכנון פנסיוני פיננסי</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
           <span>תאונות אישיות</span>
-          <span class="dot">◆</span>
+          <span class="dot" aria-hidden="true">◆</span>
         </div>
+        <!-- גרסה נגישה לקוראי מסך -->
+        <p class="sr-only">שירותים: ביטוח נסיעות לחו"ל, ביטוח דירה ותכולה, ביטוח משכנתא, ביטוח חיים ובריאות, אובדן כושר עבודה, ביטוח כלי רכב, תכנון פנסיוני פיננסי, תאונות אישיות.</p>
       </div>
 
     </section>
@@ -143,14 +144,14 @@
           <div class="about-photos reveal-left">
             <div class="about-photos-stack">
               <img src="images/about.jpeg"
-                   alt="אוהד ורון – סוכן ביטוח מוסמך"
+                   alt="אוהד ורון – סוכן ביטוח מוסמך, מחייך"
                    class="photo-main" loading="lazy" />
             </div>
           </div>
 
           <div class="about-text reveal-right">
-            <p class="label">נעים להכיר וברוכים הבאים!</p>
-            <h2 id="about-h2">אוהד ורון –<br/>סוכן ביטוח מוסמך</h2>
+            <p class="label" aria-hidden="true">נעים להכיר וברוכים הבאים!</p>
+            <h2 id="about-h2">אוהד ורון<br/>סוכן ביטוח מוסמך</h2>
 
             <p>
               שמי אוהד ורון, מתגורר בבאר יעקב, נשוי ליובל אישתי המושלמת ואבא של לימאי הנסיכה.
@@ -165,11 +166,11 @@
             <ul class="creds" role="list" aria-label="רישיונות והשכלה">
               <li>
                 <span class="check" aria-hidden="true">✓</span>
-                רישיון פנסיוני עם התמחות בעולם הפיננסים
+                <span>רישיון פנסיוני עם התמחות בעולם הפיננסים</span>
               </li>
               <li>
                 <span class="check" aria-hidden="true">✓</span>
-                בעל תואר ראשון (B.A) בכלכלה ומנהל עסקים
+                <span>בעל תואר ראשון (B.A) בכלכלה ומנהל עסקים</span>
               </li>
             </ul>
           </div>
@@ -183,7 +184,7 @@
       <div class="container">
 
         <div class="section-head reveal-up">
-          <p class="label">האיזון המושלם בין עלות לתועלת</p>
+          <p class="label" aria-hidden="true">האיזון המושלם בין עלות לתועלת</p>
           <h2 id="milestones-h2">על פי צרכיו של הלקוח</h2>
           <p class="section-sub">לכל לקוח נדרשת תשומת לב אישית לאפיון המוצרים המשווקים והתאמתם ללקוח. אלה הם אבני הדרך שלנו!</p>
         </div>
@@ -191,7 +192,7 @@
         <div class="milestones-grid">
           <article class="milestone-card reveal-up" aria-labelledby="m1">
             <div class="milestone-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
                 <path d="M24 4l4 8 9 1.3-6.5 6.3 1.5 9L24 24l-8 4.6 1.5-9L11 13.3 20 12z"/>
                 <path d="M8 36h32M14 42h20"/>
               </svg>
@@ -202,7 +203,7 @@
 
           <article class="milestone-card reveal-up" style="--d:.1s" aria-labelledby="m2">
             <div class="milestone-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
                 <circle cx="24" cy="24" r="18"/>
                 <path d="M16 24l6 6 10-12"/>
               </svg>
@@ -213,7 +214,7 @@
 
           <article class="milestone-card reveal-up" style="--d:.2s" aria-labelledby="m3">
             <div class="milestone-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
                 <path d="M24 6v36M6 24h36M10 10l28 28M38 10L10 38"/>
               </svg>
             </div>
@@ -223,7 +224,7 @@
 
           <article class="milestone-card reveal-up" style="--d:.3s" aria-labelledby="m4">
             <div class="milestone-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
                 <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z"/>
                 <path d="M24 14v10l6 4"/>
               </svg>
@@ -241,7 +242,7 @@
       <div class="container">
 
         <div class="section-head reveal-up">
-          <p class="label">מעטפת ביטוחים שלמה ומקיפה</p>
+          <p class="label" aria-hidden="true">מעטפת ביטוחים שלמה ומקיפה</p>
           <h2 id="services-h2">תחת קורת גג אחת</h2>
           <p class="section-sub">לכל לקוח מותאמים פתרונות מדויקים בהתאם לצרכים האישיים שלו. כך אנחנו יוצרים ביטוח עם אחריות, הקשבה ותכנון נכון מהבסיס.</p>
         </div>
@@ -250,7 +251,7 @@
 
           <article class="svc-card reveal-up" aria-labelledby="svc1">
             <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402C1 3.498 4.498 1 7.5 1c1.8 0 3.5.9 4.5 2.1C13 1.9 14.7 1 16.5 1 19.502 1 23 3.498 23 7.191c0 4.105-5.37 8.863-11 14.402z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402C1 3.498 4.498 1 7.5 1c1.8 0 3.5.9 4.5 2.1C13 1.9 14.7 1 16.5 1 19.502 1 23 3.498 23 7.191c0 4.105-5.37 8.863-11 14.402z"/></svg>
             </div>
             <h3 id="svc1">ביטוח בריאות ותאונות אישיות</h3>
             <p>הגנה מקיפה למצבים רפואיים בלתי צפויים, עם כיסוי רחב לבדיקות, טיפולים, ניתוחים ואירועים חריגים.</p>
@@ -258,7 +259,7 @@
 
           <article class="svc-card reveal-up" style="--d:.07s" aria-labelledby="svc2">
             <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
             </div>
             <h3 id="svc2">ביטוח דירה</h3>
             <p>כיסוי נרחב למבנה, תכולה ונזקים צד ג'. כולל מענה במקרים של שריפה, פריצה או נזקים מכל סוג שהם.</p>
@@ -266,7 +267,7 @@
 
           <article class="svc-card reveal-up" style="--d:.14s" aria-labelledby="svc3">
             <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
             </div>
             <h3 id="svc3">ביטוח רכב</h3>
             <p>פתרונות ביטוח לרכב פרטי או מסחרי, כולל ביטוח חובה, צד ג' ומקיף. שירות אמין ומהיר ברגע האמת.</p>
@@ -274,7 +275,7 @@
 
           <article class="svc-card reveal-up" style="--d:.21s" aria-labelledby="svc4">
             <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
             </div>
             <h3 id="svc4">ביטוח משכנתא</h3>
             <p>ביטוח מותאם לדרישות הבנק – חיים ונכס – תוך שמירה על זכויותיכם ותכנון חכם לאורך כל תקופת ההלוואה.</p>
@@ -282,7 +283,7 @@
 
           <article class="svc-card reveal-up" style="--d:.28s" aria-labelledby="svc5">
             <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
             </div>
             <h3 id="svc5">ביטוח חיים</h3>
             <p>הגנה כלכלית למשפחה במקרה של אובדן חיים, עם תכנון רגיש ומקצועי לפי צרכים, התחייבויות וסגנון חיים.</p>
@@ -290,7 +291,7 @@
 
           <article class="svc-card reveal-up" style="--d:.35s" aria-labelledby="svc6">
             <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <h3 id="svc6">ביטוח אובדן כושר עבודה</h3>
             <p>כיסוי שמבטיח הכנסה חודשית במקרה של פגיעה ביכולת לעבוד. מותאם לעיסוק הספציפי שלכם ולשגרת החיים.</p>
@@ -298,7 +299,7 @@
 
           <article class="svc-card reveal-up" style="--d:.07s" aria-labelledby="svc7">
             <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
             </div>
             <h3 id="svc7">תכנון פנסיוני ופיננסי</h3>
             <p>ליווי אישי בבניית תכנית פנסיה וניהול השקעות, מתוך הסתכלות ארוכת טווח. דגש על יציבות והתאמה אישית.</p>
@@ -306,7 +307,7 @@
 
           <article class="svc-card reveal-up" style="--d:.14s" aria-labelledby="svc8">
             <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
             </div>
             <h3 id="svc8">ביטוח נסיעות לחו"ל</h3>
             <p>כיסוי רפואי וביטוחי מלא לכל מקרה שעלול להפתיע בזמן שהותכם בחו"ל – רפואי, ביטול טיסה, כבודה ועוד.</p>
@@ -322,7 +323,7 @@
         <div class="faq-layout">
 
           <div class="faq-intro reveal-left">
-            <p class="label light">שאלות נפוצות</p>
+            <p class="label light" aria-hidden="true">שאלות נפוצות</p>
             <h2 id="faq-h2">אין שאלה קטנה מדי<br/><em>כשזה נוגע לעתיד שלכם</em></h2>
             <p class="section-sub light">ריכזנו עבורכם את השאלות הנפוצות ביותר, עם תשובות ברורות, מקצועיות ולעניין.</p>
           </div>
@@ -389,39 +390,39 @@
       <div class="container">
 
         <div class="section-head reveal-up">
-          <p class="label">מה אומרים עליי</p>
+          <p class="label" aria-hidden="true">מה אומרים עליי</p>
           <h2 id="testi-h2">לקוחות מספרים</h2>
         </div>
 
-        <div class="testi-grid">
+        <div class="testi-grid" role="list">
 
-          <article class="testi-card reveal-up" aria-label="המלצה מאת רותם ב.">
-            <div class="testi-stars" aria-label="דירוג 5 כוכבים">★★★★★</div>
+          <article class="testi-card reveal-up" role="listitem" aria-label="המלצה מאת רותם ב.">
+            <div class="testi-stars" aria-label="דירוג 5 מתוך 5 כוכבים" role="img">★★★★★</div>
             <blockquote>
               <p>אוהד הציל אותי מביטוח מיותר שנשאתי שנים. הוא עשה סקירה מקיפה, חסך לי כסף רב, ובנה לי כיסוי אמיתי שמתאים לי. ממליץ בחום!</p>
             </blockquote>
             <footer class="testi-author">
-              <span class="testi-name">רותם ב.</span>
+              <cite><span class="testi-name">רותם ב.</span></cite>
             </footer>
           </article>
 
-          <article class="testi-card reveal-up" style="--d:.1s" aria-label="המלצה מאת מיכל ו.">
-            <div class="testi-stars" aria-label="דירוג 5 כוכבים">★★★★★</div>
+          <article class="testi-card reveal-up" style="--d:.1s" role="listitem" aria-label="המלצה מאת מיכל ו.">
+            <div class="testi-stars" aria-label="דירוג 5 מתוך 5 כוכבים" role="img">★★★★★</div>
             <blockquote>
               <p>הכי טוב שעשיתי זה לפנות לאוהד. הוא הסביר הכל בסבלנות, לא דחק ולא לחץ – פשוט עזר לי להבין מה אני באמת צריכה. שירות יוצא מן הכלל.</p>
             </blockquote>
             <footer class="testi-author">
-              <span class="testi-name">מיכל ו.</span>
+              <cite><span class="testi-name">מיכל ו.</span></cite>
             </footer>
           </article>
 
-          <article class="testi-card reveal-up" style="--d:.2s" aria-label="המלצה מאת גל ש.">
-            <div class="testi-stars" aria-label="דירוג 5 כוכבים">★★★★★</div>
+          <article class="testi-card reveal-up" style="--d:.2s" role="listitem" aria-label="המלצה מאת גל ש.">
+            <div class="testi-stars" aria-label="דירוג 5 מתוך 5 כוכבים" role="img">★★★★★</div>
             <blockquote>
               <p>כשהייתי צריך להגיש תביעה, אוהד היה זמין, מקצועי ולחם בשבילי מול חברת הביטוח. קיבלתי את מה שמגיע לי בלי כאבי ראש.</p>
             </blockquote>
             <footer class="testi-author">
-              <span class="testi-name">גל ש.</span>
+              <cite><span class="testi-name">גל ש.</span></cite>
             </footer>
           </article>
 
@@ -434,19 +435,19 @@
       <div class="cta-overlay" aria-hidden="true"></div>
       <div class="container">
         <div class="cta-body reveal-up">
-          <p class="label light">מתכננים היום</p>
+          <p class="label light" aria-hidden="true">מתכננים היום</p>
           <h2 id="cta-h2">למען העתיד הבטוח<br/><em>של המחר</em></h2>
           <p class="cta-sub">הצוות שלנו ישמח ליצור איתכם קשר ולהעניק מענה אישי ומדויק.</p>
           <div class="cta-btns">
             <a href="https://wa.me/9720549967122?text=היי%2C%20אני%20פונה%20אלייך%20מהאתר"
                class="btn-main" target="_blank" rel="noopener noreferrer"
-               aria-label="שלח הודעת וואטסאפ לאוהד ורון">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+               aria-label="שלח הודעת וואטסאפ לאוהד ורון (נפתח בחלון חדש)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
               וואטסאפ
             </a>
             <a href="tel:+9720549967122" class="btn-ghost"
-               aria-label="התקשרו לאוהד ורון">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.6a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.7 7.1a16 16 0 006.29 6.29l.83-.83a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+               aria-label="התקשרו לאוהד ורון, מספר: 054-9967122">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.6a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.7 7.1a16 16 0 006.29 6.29l.83-.83a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
               התקשרו עכשיו
             </a>
           </div>
@@ -454,11 +455,9 @@
       </div>
     </section>
 
-
     <!-- ═══════════════════ CONTACT FORM ═══════════════════ -->
     <section id="contact-form" class="cf-section" aria-labelledby="cf-h2">
 
-      <!-- רקע דקורטיבי -->
       <div class="cf-bg" aria-hidden="true">
         <div class="cf-bg-circle cf-bg-c1"></div>
         <div class="cf-bg-circle cf-bg-c2"></div>
@@ -466,61 +465,62 @@
 
       <div class="container cf-layout">
 
-        <!-- עמודה שמאל: פרטי קשר -->
         <div class="cf-info reveal-left">
-          <p class="label light">בואו נדבר</p>
+          <p class="label light" aria-hidden="true">בואו נדבר</p>
           <h2 id="cf-h2" class="cf-title">צרו קשר<br/><em>ישירות</em></h2>
           <p class="cf-info-sub">מלאו את הטופס ואוהד יחזור אליכם בהקדם האפשרי עם מענה אישי ומקצועי.</p>
 
-          <ul class="cf-contact-list">
+          <ul class="cf-contact-list" aria-label="פרטי קשר">
             <li>
-              <span class="cf-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.6a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.7 7.1a16 16 0 006.29 6.29l.83-.83a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              <span class="cf-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.6a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.7 7.1a16 16 0 006.29 6.29l.83-.83a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
               </span>
-              <a href="tel:+9720549967122">054-9967122</a>
+              <a href="tel:+9720549967122" aria-label="התקשר: 054-9967122">054-9967122</a>
             </li>
             <li>
-              <span class="cf-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span class="cf-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               </span>
-              <a href="mailto:ohad@bmcenter.co.il">ohad@bmcenter.co.il</a>
+              <a href="mailto:ohad@bmcenter.co.il" aria-label="שלח אימייל: ohad@bmcenter.co.il">ohad@bmcenter.co.il</a>
             </li>
             <li>
-              <span class="cf-icon">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              <span class="cf-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
               </span>
-              <a href="https://wa.me/9720549967122" target="_blank" rel="noopener noreferrer">וואטסאפ</a>
+              <a href="https://wa.me/9720549967122" target="_blank" rel="noopener noreferrer" aria-label="שלח הודעת וואטסאפ (נפתח בחלון חדש)">וואטסאפ</a>
             </li>
           </ul>
         </div>
 
-        <!-- עמודה ימין: טופס -->
         <div class="cf-card reveal-right">
           <form id="cf-form" class="cf-form"
                 action="https://formspree.io/f/ohad@bmcenter.co.il"
                 method="POST"
                 novalidate
-                aria-label="טופס יצירת קשר">
+                aria-label="טופס יצירת קשר עם אוהד ורון">
 
-            <!-- שדה נסתר – שלח לאימייל של אוהד -->
             <input type="hidden" name="_replyto" value="ohad@bmcenter.co.il" />
             <input type="hidden" name="_subject" value="פנייה חדשה מהאתר – אוהד ורון ביטוח" />
             <input type="hidden" name="_language" value="he" />
 
             <div class="cf-row">
               <div class="cf-field">
-                <label for="cf-name">שם מלא <span class="req" aria-hidden="true">*</span></label>
+                <label for="cf-name">שם מלא <span class="req" aria-hidden="true">*</span><span class="sr-only">(שדה חובה)</span></label>
                 <input type="text" id="cf-name" name="name"
                        placeholder="ישראל ישראלי"
-                       required autocomplete="name" />
-                <span class="cf-err" role="alert"></span>
+                       required autocomplete="name"
+                       aria-required="true"
+                       aria-describedby="cf-name-err" />
+                <span class="cf-err" id="cf-name-err" role="alert" aria-live="polite"></span>
               </div>
               <div class="cf-field">
-                <label for="cf-phone">טלפון <span class="req" aria-hidden="true">*</span></label>
+                <label for="cf-phone">טלפון <span class="req" aria-hidden="true">*</span><span class="sr-only">(שדה חובה)</span></label>
                 <input type="tel" id="cf-phone" name="phone"
                        placeholder="05X-XXXXXXX"
-                       required autocomplete="tel" inputmode="tel" />
-                <span class="cf-err" role="alert"></span>
+                       required autocomplete="tel" inputmode="tel"
+                       aria-required="true"
+                       aria-describedby="cf-phone-err" />
+                <span class="cf-err" id="cf-phone-err" role="alert" aria-live="polite"></span>
               </div>
             </div>
 
@@ -534,38 +534,40 @@
             <div class="cf-field">
               <label for="cf-subject">נושא</label>
               <input type="text" id="cf-subject" name="subject"
-                     placeholder="לדוג&apos;: ביטוח רכב, בריאות, פנסיה..." />
+                     placeholder="לדוג': ביטוח רכב, בריאות, פנסיה..." />
             </div>
 
             <div class="cf-field">
-              <label for="cf-msg">הודעה <span class="req" aria-hidden="true">*</span></label>
+              <label for="cf-msg">הודעה <span class="req" aria-hidden="true">*</span><span class="sr-only">(שדה חובה)</span></label>
               <textarea id="cf-msg" name="message" rows="4"
                         placeholder="ספר לי במה אוכל לעזור..."
-                        required></textarea>
-              <span class="cf-err" role="alert"></span>
+                        required
+                        aria-required="true"
+                        aria-describedby="cf-msg-err"></textarea>
+              <span class="cf-err" id="cf-msg-err" role="alert" aria-live="polite"></span>
             </div>
 
-            <button type="submit" class="cf-btn" id="cf-btn">
+            <button type="submit" class="cf-btn" id="cf-btn" aria-describedby="cf-form-status">
               <span class="cf-btn-text">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                 שלח הודעה
               </span>
               <span class="cf-btn-loading" hidden aria-hidden="true">
-                <svg class="cf-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-opacity=".25"/><path d="M12 2a10 10 0 0110 10"/></svg>
+                <svg class="cf-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" focusable="false"><circle cx="12" cy="12" r="10" stroke-opacity=".25"/><path d="M12 2a10 10 0 0110 10"/></svg>
                 שולח...
               </span>
             </button>
+            <span id="cf-form-status" class="sr-only" role="status" aria-live="polite"></span>
 
           </form>
 
-          <!-- הודעת הצלחה -->
           <div class="cf-success" id="cf-success" role="status" aria-live="polite" hidden>
             <div class="cf-success-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" focusable="false"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
             <h3>ההודעה נשלחה!</h3>
             <p>תודה שפנית, אוהד יחזור אליך בהקדם.</p>
-            <button class="cf-reset" id="cf-reset">שלח הודעה נוספת</button>
+            <button class="cf-reset" id="cf-reset" aria-label="שלח הודעה נוספת, חזור לטופס">שלח הודעה נוספת</button>
           </div>
 
         </div>
@@ -585,17 +587,17 @@
           <p class="footer-tagline">האיזון הנכון בין עלות לתועלת</p>
         </div>
 
-        <nav class="footer-contact" aria-label="פרטי קשר">
-          <a href="https://wa.me/9720549967122" target="_blank" rel="noopener noreferrer" aria-label="שלחו הודעת וואטסאפ">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <nav class="footer-contact" aria-label="קישורי קשר">
+          <a href="https://wa.me/9720549967122" target="_blank" rel="noopener noreferrer" aria-label="שלחו הודעת וואטסאפ (נפתח בחלון חדש)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
             0549967122
           </a>
-          <a href="tel:+9720549967122" aria-label="טלפון">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.6a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.7 7.1a16 16 0 006.29 6.29l.83-.83a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          <a href="tel:+9720549967122" aria-label="טלפון: 054-9967122">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.6a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.7 7.1a16 16 0 006.29 6.29l.83-.83a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
             0549967122
           </a>
-          <a href="https://instagram.com/ohad.varon.insurance" target="_blank" rel="noopener noreferrer" aria-label="דף האינסטגרם">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <a href="https://instagram.com/ohad.varon.insurance" target="_blank" rel="noopener noreferrer" aria-label="עמוד האינסטגרם של אוהד ורון (נפתח בחלון חדש)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             Instagram
           </a>
         </nav>
@@ -611,8 +613,8 @@
   <!-- WhatsApp FAB -->
   <a href="https://wa.me/9720549967122?text=היי%2C%20אני%20פונה%20אלייך%20מהאתר"
      class="wa-fab" target="_blank" rel="noopener noreferrer"
-     aria-label="פתח שיחת וואטסאפ עם אוהד ורון">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+     aria-label="פתח שיחת וואטסאפ עם אוהד ורון (נפתח בחלון חדש)">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
   </a>
 
   <script src="script.js"></script>

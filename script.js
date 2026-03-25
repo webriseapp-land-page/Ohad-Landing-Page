@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initYear();
   initLogoLightbox();
   initContactForm();
+  initHeroParticles();
+  initHeroTextReveal();
 });
 
 /* ─────────────────────────────────────────
@@ -195,7 +197,7 @@ function initYear() {
 }
 
 /* ─────────────────────────────────────────
-   7. LOGO LIGHTBOX
+   7. LOGO LIGHTBOX — with focus trap
 ───────────────────────────────────────── */
 function initLogoLightbox() {
   const btn      = document.getElementById('logo-btn');
@@ -203,6 +205,8 @@ function initLogoLightbox() {
   const bg       = document.getElementById('logo-lightbox-bg');
   const closeBtn = document.getElementById('logo-lightbox-close');
   if (!btn || !lightbox) return;
+
+  const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
   const open = () => {
     lightbox.hidden = false;
@@ -217,17 +221,147 @@ function initLogoLightbox() {
   };
 
   btn.addEventListener('click', open);
+
+  // Close on bg overlay click
   bg && bg.addEventListener('click', close);
+
+  // Also close if click lands directly on lightbox wrapper (not content)
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) close();
+  });
+
   closeBtn && closeBtn.addEventListener('click', close);
 
+  // Close on Escape
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !lightbox.hidden) close();
+    if (lightbox.hidden) return;
+    if (e.key === 'Escape') { close(); return; }
+
+    // Focus trap — Tab cycles inside dialog
+    if (e.key === 'Tab') {
+      const focusable = [...lightbox.querySelectorAll(focusableSelectors)].filter(
+        el => !el.closest('[hidden]') && !el.disabled
+      );
+      if (!focusable.length) { e.preventDefault(); return; }
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
   });
 }
 
 /* ─────────────────────────────────────────
-   8. CONTACT FORM  →  Formspree (email)
+   9. HERO PARTICLES — floating gold dots
 ───────────────────────────────────────── */
+function initHeroParticles() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const canvas = document.getElementById('heroParticles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let W, H, particles;
+
+  function resize() {
+    const hero = canvas.closest('.hero');
+    W = canvas.width  = hero ? hero.offsetWidth  : window.innerWidth;
+    H = canvas.height = hero ? hero.offsetHeight : window.innerHeight;
+  }
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.x  = Math.random() * W;
+      this.y  = init ? Math.random() * H : H + 10;
+      this.r  = Math.random() * 1.8 + 0.4;
+      this.a  = 0;
+      this.ta = Math.random() * 0.6 + 0.1;
+      this.vy = -(Math.random() * 0.4 + 0.15);
+      this.vx = (Math.random() - 0.5) * 0.25;
+      this.life = 0;
+      this.maxLife = Math.random() * 220 + 120;
+    }
+    update() {
+      this.life++;
+      this.x += this.vx;
+      this.y += this.vy;
+      const t = this.life / this.maxLife;
+      this.a = t < 0.2 ? t / 0.2 * this.ta
+             : t > 0.75 ? (1 - t) / 0.25 * this.ta
+             : this.ta;
+      if (this.life >= this.maxLife) this.reset(false);
+    }
+    draw() {
+      ctx.save();
+      ctx.globalAlpha = this.a;
+      ctx.fillStyle = '#c9943a';
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = 'rgba(201,148,58,.8)';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({ length: 55 }, () => new Particle());
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', () => { resize(); }, { passive: true });
+  init();
+  loop();
+}
+
+/* ─────────────────────────────────────────
+   10. HERO TEXT REVEAL — word by word
+───────────────────────────────────────── */
+function initHeroTextReveal() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const sub = document.querySelector('.hero-sub');
+  if (!sub) return;
+
+  const text = sub.textContent;
+  sub.innerHTML = '';
+  sub.style.animation = 'none';
+  sub.style.opacity = '1';
+
+  text.split('').forEach((char, i) => {
+    const span = document.createElement('span');
+    span.textContent = char === ' ' ? '\u00A0' : char;
+    span.style.cssText = `
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: charReveal .5s ease forwards;
+      animation-delay: ${.75 + i * .03}s;
+    `;
+    sub.appendChild(span);
+  });
+
+  // Add keyframe if not present
+  if (!document.getElementById('charRevealStyle')) {
+    const style = document.createElement('style');
+    style.id = 'charRevealStyle';
+    style.textContent = `
+      @keyframes charReveal {
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+}
+
 function initContactForm() {
   const form     = document.getElementById('cf-form');
   const success  = document.getElementById('cf-success');
@@ -239,7 +373,9 @@ function initContactForm() {
   const getField = id => document.getElementById(id);
   const setErr   = (input, msg) => {
     input.classList.toggle('invalid', !!msg);
-    const errEl = input.closest('.cf-field')?.querySelector('.cf-err');
+    input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    const errId = input.getAttribute('aria-describedby');
+    const errEl = errId ? document.getElementById(errId) : input.closest('.cf-field')?.querySelector('.cf-err');
     if (errEl) errEl.textContent = msg;
   };
   const clearErr = input => setErr(input, '');
