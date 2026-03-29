@@ -447,7 +447,8 @@ h2 em { font-style:normal; color:var(--c-gold); }
 .ticker-track {
   display: inline-flex; align-items: center; height: 100%;
   white-space: nowrap;
-  animation: ticker 30s linear infinite;
+  animation: ticker 20s linear infinite;
+  animation-delay: 0s;
 }
 .ticker-track span {
   font-size: .82rem; font-weight: 700;
