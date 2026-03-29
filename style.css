@@ -444,19 +444,18 @@ h2 em { font-style:normal; color:var(--c-gold); }
   backdrop-filter: blur(8px);
   margin-top: auto;
 }
-.ticker-track {
-  display: inline-flex; align-items: center; height: 100%;
+.ticker-inner {
+  position: absolute;
+  top: 0; left: 0;
+  display: flex; align-items: center; height: 100%;
   white-space: nowrap;
-  animation: ticker 20s linear infinite;
-  animation-delay: 0s;
 }
-.ticker-track span {
+.ticker-inner span {
   font-size: .82rem; font-weight: 700;
   color: var(--c-dark); padding-inline: .85rem;
   letter-spacing: .04em;
 }
-.ticker-track .dot { font-size: .45rem; padding-inline: .2rem; color: rgba(13,33,55,.5); }
-@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker-inner .dot { font-size: .45rem; padding-inline: .2rem; color: rgba(13,33,55,.5); }
 
 /* ═══════════════════════════════════════════════
    ABOUT
