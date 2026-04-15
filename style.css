@@ -1185,3 +1185,212 @@ h2 em { font-style:normal; color:var(--c-gold); }
   .cta-btns        { flex-direction:column; align-items:center; }
   .hero-title      { font-size:clamp(2.2rem,8vw,3rem); }
 }
+
+/* ═══════════════════ ACCESSIBILITY WIDGET ═══════════════════ */
+
+/* כפתור נגישות — תמיד קבוע על המסך, מעל הוואטסאפ */
+.a11y-fab {
+  position: fixed;
+  bottom: 110px;
+  left: 1.75rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: var(--c-dark);
+  color: var(--c-white);
+  border: 2px solid var(--c-gold);
+  border-radius: 50px;
+  padding: 7px 10px 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(13,33,55,.35);
+  font-family: var(--ff-b);
+  line-height: 1;
+  transition: background .2s, transform .2s;
+}
+.a11y-fab:hover, .a11y-fab:focus-visible {
+  background: var(--c-gold);
+  color: var(--c-dark);
+  transform: scale(1.07);
+  outline: 3px solid var(--c-dark);
+  outline-offset: 2px;
+}
+.a11y-fab.has-active {
+  box-shadow: 0 0 0 3px rgba(201,148,58,.4), 0 4px 20px rgba(13,33,55,.35);
+}
+.a11y-fab-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .03em;
+}
+
+/* Panel נגישות */
+#a11y-panel {
+  position: fixed;
+  bottom: 185px;
+  left: 1.75rem;
+  z-index: 9999;
+  width: 260px;
+  background: var(--c-white);
+  border: 2px solid var(--c-gold);
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(13,33,55,.22);
+  padding: 1.2rem 1rem 1rem;
+  direction: rtl;
+  font-family: var(--ff-b);
+  display: none;
+}
+#a11y-panel.open { display: block; }
+
+.a11y-panel-title {
+  font-family: var(--ff-h);
+  font-size: 1rem;
+  color: var(--c-dark);
+  text-align: center;
+  margin-bottom: .9rem;
+  padding-bottom: .6rem;
+  border-bottom: 1.5px solid var(--c-light);
+}
+
+.a11y-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .55rem;
+  gap: .5rem;
+}
+.a11y-row-label {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--c-text);
+  flex: 1;
+}
+
+/* כפתורי גודל טקסט */
+.a11y-font-btns {
+  display: flex;
+  gap: .3rem;
+}
+.a11y-font-btn {
+  min-width: 34px;
+  min-height: 34px;
+  background: var(--c-off);
+  color: var(--c-dark);
+  border: 1.5px solid var(--c-border);
+  border-radius: 8px;
+  font-family: var(--ff-h);
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, border-color .15s;
+}
+.a11y-font-btn:hover, .a11y-font-btn:focus-visible {
+  background: var(--c-gold-pale);
+  border-color: var(--c-gold);
+  outline: 2px solid var(--c-gold);
+}
+
+/* כפתורי toggle */
+.a11y-toggle {
+  min-width: 44px;
+  min-height: 28px;
+  background: var(--c-off);
+  color: var(--c-dark);
+  border: 1.5px solid var(--c-border);
+  border-radius: 8px;
+  font-size: .78rem;
+  font-weight: 600;
+  font-family: var(--ff-b);
+  cursor: pointer;
+  padding: 0 .5rem;
+  transition: background .15s, border-color .15s, color .15s;
+  white-space: nowrap;
+}
+.a11y-toggle:hover, .a11y-toggle:focus-visible {
+  background: var(--c-gold-pale);
+  border-color: var(--c-gold);
+  outline: 2px solid var(--c-gold);
+}
+.a11y-toggle[aria-pressed="true"] {
+  background: var(--c-dark);
+  color: var(--c-white);
+  border-color: var(--c-dark);
+}
+
+/* כפתור איפוס */
+.a11y-reset {
+  width: 100%;
+  min-height: 36px;
+  margin-top: .6rem;
+  background: transparent;
+  color: var(--c-gold);
+  border: 1.5px solid var(--c-gold);
+  border-radius: 8px;
+  font-family: var(--ff-b);
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.a11y-reset:hover, .a11y-reset:focus-visible {
+  background: var(--c-gold);
+  color: var(--c-dark);
+  outline: 2px solid var(--c-dark);
+}
+
+/* Overlay קל לסגירה */
+#a11y-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+}
+#a11y-overlay.open { display: block; }
+
+/* ── CSS states ── */
+/* filter על page-wrap ולא על body — כך fixed elements לא נשברים */
+body.a11y-contrast #page-wrap { filter: contrast(1.6); }
+body.a11y-invert   #page-wrap { filter: invert(1) hue-rotate(180deg); }
+body.a11y-invert #page-wrap img,
+body.a11y-invert #page-wrap canvas,
+body.a11y-invert #page-wrap video { filter: invert(1) hue-rotate(180deg); }
+body.a11y-big-cursor,
+body.a11y-big-cursor * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'%3E%3Cpath d='M4 3l16 9-7 1-4 7z' fill='%230d2137' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E") 4 4, auto !important;
+}
+body.a11y-links a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+body.a11y-no-anim *,
+body.a11y-no-anim *::before,
+body.a11y-no-anim *::after {
+  animation-duration: 0.001ms !important;
+  animation-delay: 0ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  transition-delay: 0ms !important;
+}
+/* עצור גם reveal elements — הצג אותם מיד */
+body.a11y-no-anim .reveal-up,
+body.a11y-no-anim .reveal-left,
+body.a11y-no-anim .reveal-right {
+  opacity: 1 !important;
+  transform: none !important;
+}
+/* הסתר canvas של particles */
+body.a11y-no-anim canvas {
+  display: none !important;
+}
+/* עצור ticker */
+body.a11y-no-anim .ticker-inner,
+body.a11y-no-anim .ticker-inner ~ * {
+  animation: none !important;
+  transform: none !important;
+}
+:focus-visible { outline: 3px solid var(--c-gold) !important; outline-offset: 3px !important; }
